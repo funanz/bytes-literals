@@ -67,10 +67,11 @@ namespace bytes_literals {
         template <class T, std::size_t N>
         constexpr auto to_bytes(const char (&s)[N])
         {
-            static_assert((N - 1) % 2 == 0, "missing low byte");
+            constexpr auto len = N - 1;
+            static_assert(len % 2 == 0, "missing low byte");
 
-            std::array<T, N/2> a;
-            impl::hex_to_bytes(s, s + N - 1, a.begin(), a.end(), false);
+            std::array<T, len / 2> a;
+            impl::hex_to_bytes(s, s + len, a.begin(), a.end(), false);
             return a;
         }
     } // namespace impl
