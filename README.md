@@ -22,7 +22,7 @@ Digit separator
 constexpr auto a = 0x00010203'04050607'08090a0b'0c0d0e0f_bytes
 ```
 
-From a hex string (Disit separator cannot be used)
+From a hex string (Digit separator cannot be used)
 ```C++
 constexpr auto c = to_bytes("01234567"); // c is std::array<uint8_t, 4>
 constexpr auto d = to_sbytes("01234567"); // b is std::array<int8_t, 4>
