@@ -28,14 +28,14 @@ namespace bytes_literals {
         template <class InIter, class OutIter>
         constexpr void hex_to_bytes(InIter s_first, InIter s_last,
                                     OutIter o_first, OutIter o_last,
-                                    bool ignoreQuote)
+                                    bool ignore_quote)
         {
             auto s = s_first;
             auto o = o_first;
             int high = 1;
             while (s != s_last && o != o_last) {
                 auto c = *s++;
-                if (ignoreQuote && c == '\'') continue;
+                if (ignore_quote && c == '\'') continue;
 
                 auto n = hex_to_num(c);
                 if (high)
