@@ -46,6 +46,14 @@ namespace bytes_literals {
             }
         }
 
+        template <class Array, class InIter>
+        constexpr auto hex_to_bytes(InIter first, InIter last, bool ignore_quote)
+        {
+            Array a;
+            hex_to_bytes(first, last, a.begin(), a.end(), ignore_quote);
+            return a;
+        }
+
         template <class T, char...S>
         constexpr auto bytes_literal()
         {
@@ -59,8 +67,8 @@ namespace bytes_literals {
             constexpr std::size_t len = sizeof(s) - prefix - quotes;
             static_assert(len % 2 == 0, "missing low byte");
 
-            std::array<T, len / 2> a;
-            hex_to_bytes(s + prefix, s + sizeof(s), a.begin(), a.end(), true);
+            using result_type = std::array<T, len / 2>;
+            constexpr auto a = hex_to_bytes<result_type>(s + prefix, s + sizeof(s), true);
             return a;
         }
 
@@ -70,9 +78,8 @@ namespace bytes_literals {
             constexpr auto len = N - 1;
             static_assert(len % 2 == 0, "missing low byte");
 
-            std::array<T, len / 2> a;
-            impl::hex_to_bytes(s, s + len, a.begin(), a.end(), false);
-            return a;
+            using result_type = std::array<T, len / 2>;
+            return hex_to_bytes<result_type>(s, s + len, false);
         }
     } // namespace impl
 
