@@ -12,7 +12,7 @@ using namespace bytes_literals;
 constexpr auto a = 0x01234567_bytes; // a is std::array<uint8_t, 4>
 ```
 
-Signed array use '_sbytes'
+Signed array use '\_sbytes'
 ```C++
 constexpr auto a = 0x01234567_sbytes; // a is std::array<int8_t, 4>
 ```
