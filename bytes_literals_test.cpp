@@ -120,6 +120,7 @@ void test_string_to_bytes_invalid_prefix()
 {
     try {
         (void)to_bytes("0x00");
+        assert(0);
     }
     catch (std::invalid_argument&) {}
 }
@@ -128,6 +129,7 @@ void test_string_to_bytes_invalid_separator()
 {
     try {
         (void)to_bytes("0'00");
+        assert(0);
     }
     catch (std::invalid_argument&) {}
 }
