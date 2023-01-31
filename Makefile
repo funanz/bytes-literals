@@ -7,6 +7,8 @@ DEPS=$(SRCS:.cpp=.d)
 CXXFLAGS=-std=c++20 -Wall -O2 -MD
 LIBS=
 
+all: $(TARGET)
+
 $(TARGET): $(OBJS)
 	$(LINK.cpp) -o $@ $(OBJS) $(LIBS)
 
